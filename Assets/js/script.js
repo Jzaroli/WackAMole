@@ -12,18 +12,27 @@ const gameLogic = function() {
         if (secondsLeft > 0) {
             if (secondsLeft % 5 === 0){
                 mole1.removeAttribute("hidden");
-                mole1.addEventListener('click', givePoints);
+                mole1.addEventListener('click', givePoints, {once: true});
             } else {
                 mole1.setAttribute("hidden", "hidden");
             }
         } else if (secondsLeft === 0) {
             // Stops game
             clearInterval(timerInterval);
-            // Creates end game alert
-            endGame();
+            // End game:
+            storeScore();
+            renderScores();
+            mole1.removeAttribute("hidden");
+            mole1.removeEventListener('click', givePoints);
+            score.innerHTML = "score"; 
           }
-    }, 1000); 
+    }, 500); 
+    secondsLeft = 30;
+    sum = 0;
 };
+
+// Starts the Game:
+startButton.addEventListener('click', gameLogic);
 
 // Points Logic:
 const givePoints = function(){
@@ -32,17 +41,36 @@ const givePoints = function(){
 };
 
 
-// End Game Storage: 
-const endGame = function () {
+// Stores scores to Local Storage: 
+const storeScore = function () {
     const allScores = JSON.parse(localStorage.getItem('allScores')) || [];    
     allScores.push(sum);
     localStorage.setItem('allScores', JSON.stringify(allScores));
 };
 
-// Starts the Game:
-startButton.addEventListener('click', gameLogic);
 
+// Builds p tag in aside:
+const builElement = function (){
+    const createP = document.createElement("p");
+    aside.append(createP);
+    return {createP};
+};
 
-//Retrieve scores and post them to Aside:
+// Passes score to innerHTML for score message:
+const renderScores = function () {
+    const getScores = JSON.parse(localStorage.getItem('allScores'));
+    aside.innerHTML = "";
+    if (!getScores) {
+        return; // Exit function since there's nothing to render
+    }
+    for (let i = 0; i < getScores.length; i++) {
+        const gameScores = getScores[i];
+        if (gameScores !== null) {
+            const {createP} = builElement();
+            const score = gameScores;
+            createP.innerHTML = `You scored ${score} points! Try again!`;
+        }
+    }
+};
 
-// getitem from storage, iterate through loop, create HTML and pass information to aside, pass CSS to html tag as well
+renderScores();

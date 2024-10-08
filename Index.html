@@ -30,9 +30,8 @@
                     Click/Tap on the moles as they appear, to build up your score before time runs out!
                   </div>
                   <div class="modal-footer">
-                  <!-- That button that closes the Modal. Duh. -->
+                  <!-- That button that closes the Modal.-->
                   <button type="button" class="btn btn-success text-dark" data-bs-dismiss="modal">Close</button>
-                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                   </div>
                 </div>
               </div>
@@ -43,21 +42,19 @@
             <h2 id="score" class="text-success" style="margin-right: 2%; opacity: 60%">score</h2>
         </nav>
     </header>
-    
-    <div class="card bg-dark" style="display: flex; flex-flow: row wrap; position: relative">
+    <div class="card bg-dark" style="padding: 10px">
         <!-- The moles on which you will be wacking.-->
-          <img src="assets/images/mole.jpg" alt="mole" style="border-radius: 10%; visibility: hidden; position: absolute; left: 0; top: 0">
-          <img id="mole1" src="assets/images/mole.jpg" alt="mole" style="border-radius: 10%; position: absolute; left: 0; top: 0">
+        <img id="mole1" src="assets/images/mole.jpg" alt="mole" style="max-width: 50%; border-radius: 10%;">
+        <!-- Sidebar for scorekeeping -->
+        <aside id="aside" style="position: absolute; right: 0; top: 0; max-width: 50%; padding: 20px;" class="text-success">
+        </aside>
     </div>
-    <!-- Sidebar for scorekeeping -->
-    <aside id="aside" style="float: right;">
-      <h2>score 1</h2>
-      <h3>score 2</h3>
-
-    </aside>
-    <footer>
+    <footer style="padding: 20px; position: absolute; bottom: 0px; z-index: -1;">
         <!-- The awesome dudes who made this game. -->
-        <h3 class="text-light" style="text-align: center; position: fixed-center; opacity: 80%; font-size:small; position: fixed; bottom: 0"> Created by Zachary de Hart and Johann Zaroli</h3>
+        <h3 class="text-light" style="opacity: 80%; font-size:small;"> Created by Zachary de Hart and Johann Zaroli</h3>
     </footer>
 </body>
 </html>
+
+<!-- Old stuff / notes
+<img src="assets/images/mole.jpg" alt="mole" style="border-radius: 10%; visibility: hidden; position: absolute; left: 0; top: 0;">
